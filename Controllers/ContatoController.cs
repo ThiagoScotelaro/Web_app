@@ -14,7 +14,7 @@ namespace Contact_Management_Web_application.Controllers
             return View();
         }
 
-        public IActionResult Apagarx()
+        public IActionResult Apagar()
         {
             return View();
         }

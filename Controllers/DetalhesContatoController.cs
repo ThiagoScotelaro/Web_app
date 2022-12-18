@@ -4,7 +4,7 @@ namespace Contact_Management_Web_application.Controllers
 {
     public class DetalhesContatoController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Detalhes()
         {
             return View();
         }
