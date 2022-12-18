@@ -8,5 +8,10 @@ namespace Contact_Management_Web_application.Controllers
         {
             return View();
         }
+
+        public IActionResult Adicionar()
+        {
+            return View();
+        }
     }
 }
