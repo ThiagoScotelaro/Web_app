@@ -1,4 +1,5 @@
 using Contact_Management_Web_application.Data;
+using Contact_Management_Web_application.Repositorio;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,7 @@ namespace Contact_Management_Web_application
 
             builder.Services.AddDbContext<BancoContext>
                 (Options => Options.UseSqlServer("Data Source=DESKTOP-LUJ8267\\SQLEXPRESS; Initial Catalog= CRUD_MVC_Contatos; Integrated Security=True; Encrypt=False"));
+            builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
 
             var app = builder.Build();
 
