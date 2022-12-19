@@ -1,17 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Contact_Management_Web_application.Models;
+using Contact_Management_Web_application.Repositorio;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Contact_Management_Web_application.Controllers
 {
     public class ContatoController : Controller
     {
-        public IActionResult Index()
+        private readonly IContatoRepositorio _contatoRepositorio;
+        public ContatoController(IContatoRepositorio contatoRepositorio)
         {
-            return View();
+            _contatoRepositorio = contatoRepositorio;
         }
 
-        public IActionResult Editar()
+        public IActionResult Index()
         {
-            return View();
+            var contotatos = _contatoRepositorio.BuscarTodos();
+            return View(contotatos);
+        }
+
+        public IActionResult Editar(int id)
+        {
+            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            return View(contato);
+        }
+
+        [HttpPost]
+        public IActionResult Alterar(ContatoModel contato)
+        {
+            _contatoRepositorio.Atualizar(contato);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Apagar()
