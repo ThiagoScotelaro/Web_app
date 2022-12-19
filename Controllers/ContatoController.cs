@@ -31,9 +31,17 @@ namespace Contact_Management_Web_application.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
-            return View();
+            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            return View(contato);
+            
+        }
+
+        public IActionResult excluir(int id)
+        {
+            _contatoRepositorio.excluir(id);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -9,5 +9,7 @@ namespace Contact_Management_Web_application.Repositorio
         ContatoModel Adicionar(ContatoModel contato);
 
         ContatoModel Atualizar(ContatoModel contato);
+
+        bool excluir(int id);
     }
 }

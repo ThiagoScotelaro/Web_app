@@ -39,5 +39,14 @@ namespace Contact_Management_Web_application.Repositorio
             _bancoContext.SaveChanges();
             return contatoDB;
         }
+
+        public bool excluir(int id)
+        {
+            ContatoModel contatoDB = ListarPorId(id);
+            if (contatoDB == null) throw new System.Exception("Ocorreu um erro ao excluir o contato");
+            _bancoContext.Contatos.Remove(contatoDB);
+            _bancoContext.SaveChanges();
+            return true;
+        }
     }
 }
