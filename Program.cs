@@ -11,12 +11,13 @@ namespace Contact_Management_Web_application
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            string mySqlconnection = builder.Configuration.GetConnectionString("MariaDB");
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<BancoContext>
-                (Options => Options.UseSqlServer("Data Source=DESKTOP-LUJ8267\\SQLEXPRESS; Initial Catalog= CRUD_MVC_Contatos; Integrated Security=True; Encrypt=False"));
+            builder.Services.AddDbContextPool<BancoContext>
+                (Options => Options.UseMySql(mySqlconnection, ServerVersion.AutoDetect(mySqlconnection)));
             builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
 
             var app = builder.Build();
